@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- ILRepack -->
+  <Target Name="ILRepacker" AfterTargets="Build" Condition="'$(Configuration)' == 'Release'">
+    <ItemGroup>
+      <InputAssemblies Include="$(OutputPath)\$(AssemblyName).dll" />
+      <InputAssemblies Include="@(ReferencePathWithRefAssemblies)" Condition="'%(filename)' == 'YamlDotNet'" />
+      <InputAssemblies Include="@(ReferencePathWithRefAssemblies)" Condition="'%(filename)' == 'Microsoft.CodeAnalysis'" />
+      <!--<InputAssemblies Include="$(PkgYamlDotNet)\lib\netstandard2.0\YamlDotNet.dll" />-->
+      <!--<LibraryPath Include="$(PkgMicrosoft_CodeAnalysis)" />-->
+    </ItemGroup>
+
+    <ILRepack
+      DebugInfo="true"
+      Parallel="true"
+      Internalize="true"
+      InputAssemblies="@(InputAssemblies)"
+      LibraryPath="@(LibraryPath)"
+      TargetKind="Dll"
+      OutputFile="$(OutputPath)\$(AssemblyName).Merged.dll"
+    />
+  </Target>
+  <!-- /ILRepack -->
+</Project>

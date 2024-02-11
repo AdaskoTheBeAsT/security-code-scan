@@ -2,12 +2,12 @@
 using System.Threading.Tasks;
 using SecurityCodeScan.Analyzers;
 using SecurityCodeScan.Test.Helpers;
-using System.Web.Script.Serialization;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using SecurityCodeScan.Analyzers.Taint;
+using System.Web.Script.Serialization;
 
 namespace SecurityCodeScan.Test
 {

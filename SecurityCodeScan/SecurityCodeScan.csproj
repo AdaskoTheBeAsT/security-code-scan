@@ -5,46 +5,67 @@
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <HasIOperation>true</HasIOperation>
+    <Nullable>enable</Nullable>
+    <LangVersion>preview</LangVersion>
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
-  
+
   <PropertyGroup>
-    <AssemblyName>SecurityCodeScan.VS2022</AssemblyName>
+    <PackageId>AdaskoTheBeAsT.SecurityCodeScan.VS2022</PackageId>
+    <PackageVersion>5.6.7.17</PackageVersion>
+    <Version>5.6.7</Version>
+    <Authors>Jaroslav Lobačevski</Authors>
+    <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <!--<PackageIconUrl>https://security-code-scan.github.io/images/scs230.png</PackageIconUrl>-->
+    <PackageProjectUrl>https://security-code-scan.github.io</PackageProjectUrl>
+    <Description>Security static code analyzer for .NET; released under custom name to check if it works in VS2022</Description>
+    <PackageReleaseNotes>https://security-code-scan.github.io/#ReleaseNotes</PackageReleaseNotes>
+    <Copyright>© Security Code Scan</Copyright>
+    <PackageTags>SecurityCodeScan Security.Code.Scan Security Code Scan StaticAnalysis Vulnerability Analyzer .NET Roslyn OWASP Injection XSS CSRF XXE SQLi</PackageTags>
+    <PackageDownloadUrl></PackageDownloadUrl>
+    <RepositoryUrl>https://github.com/security-code-scan/security-code-scan</RepositoryUrl>
+    <IsPackable>true</IsPackable>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+    <DevelopmentDependency>true</DevelopmentDependency>
   </PropertyGroup>
-  
+
   <ItemGroup>
-    <None Remove="Config\Main.yml" />
-    <None Remove="Config\Messages.yml" />
+    <!--<PackageReference Include="ILRepack" Version="2.0.27" PrivateAssets="all" ExcludeAssets="runtime" GeneratePathProperty="true" />
+    <PackageReference Include="ILRepack.Lib.MSBuild.Task" Version="2.0.26" PrivateAssets="all" ExcludeAssets="runtime" />-->
+    <PackageReference Include="Microsoft.CodeAnalysis" Version="4.8.0" PrivateAssets="all" ExcludeAssets="runtime" GeneratePathProperty="true" />
+    <!-- for now up to 15.1.1 is not compatible-->
+    <PackageReference Include="YamlDotNet" Version="13.7.1" GeneratePathProperty="true" />
   </ItemGroup>
-  
+
   <ItemGroup>
-    <EmbeddedResource Include="Config\Main.yml" />
-    <EmbeddedResource Include="Config\Messages.yml" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0-beta1.23525.2">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.8.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic" Version="4.8.0" />
-    <PackageReference Include="MSBuild.AssemblyVersion" Version="1.3.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="YamlDotNet" Version="15.1.0" />
     <PackageReference Update="NETStandard.Library" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Empty.Designer.cs" DesignTime="True" AutoGen="True" DependentUpon="Empty.resx" />
-    <EmbeddedResource Update="Empty.resx" Generator="ResXFileCodeGenerator" LastGenOutput="Empty.Designer.cs" />
+    <None Remove="Analyzer\Utilities\DiagnosticCategoryAndIdRanges.txt" />
+    <None Remove="Config\Main.yml" />
+    <None Remove="Config\Messages.yml" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Diagnostic.nuspec">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <AdditionalFiles Include="Analyzer\Utilities\DiagnosticCategoryAndIdRanges.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Config\Main.yml" WithCulture="false" />
+    <EmbeddedResource Include="Config\Messages.yml" WithCulture="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Empty.Designer.cs" DesignTime="True" AutoGen="True" DependentUpon="Empty.resx" />
+    <EmbeddedResource Update="Empty.resx" Generator="ResXFileCodeGenerator" LastGenOutput="Empty.Designer.cs" WithCulture="false" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="tools\install.ps1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -53,25 +74,11 @@
     </None>
   </ItemGroup>
 
-  <Target Name="CustomAfterBuild" AfterTargets="Build">
-    <GetAssemblyIdentity AssemblyFiles="$(OutDir)\$(AssemblyName).dll">
-      <Output TaskParameter="Assemblies" ItemName="AnalyzerAssemblyInfo" />
-    </GetAssemblyIdentity>
-    <Exec Command="nuget pack Diagnostic.nuspec -NoPackageAnalysis -Version %(AnalyzerAssemblyInfo.Version) -Properties repositoryCommit=$(SourceRevisionId) -OutputDirectory ." WorkingDirectory="$(OutDir)" LogStandardErrorAsError="true" ConsoleToMSBuild="true">
-      <Output TaskParameter="ConsoleOutput" PropertyName="OutputOfExec" />
-    </Exec>
-  </Target>
-
-  <Import Project="..\Roslyn\Compiler\Analyzer.Utilities.projitems" Label="Shared" />
-
-  <Import Project="..\Roslyn\FlowAnalysis\FlowAnalysis.Utilities.projitems" Label="Shared" />
-
-  <Import Project="..\Roslyn\Workspaces\Workspaces.Utilities.projitems" Label="Shared" />
-
   <ItemGroup>
-    <PackageReference Update="Microsoft.CodeAnalysis" Version="4.8.0" />
-    <PackageReference Update="Microsoft.CodeAnalysis.Common" Version="4.8.0" />
-    <PackageReference Update="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.8.0" />
+    <None Update="tools\*.*" CopyToOutputDirectory="Always" Pack="true" PackagePath="" />
+    <None Include="$(TargetDir)$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet" Visible="false" />
+    <None Include="$(TargetDir)$(AssemblyName).pdb" Pack="true" PackagePath="analyzers/dotnet" Visible="false" />
+    <!--<None Include="$(PkgYamlDotNet)\lib\netstandard2.0\YamlDotNet.dll" Pack="true" PackagePath="analyzers/dotnet" Visible="false" />-->
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.DirectoryServices;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -20,8 +22,8 @@ namespace SecurityCodeScan.Test.Taint
 
         private static readonly PortableExecutableReference[] References =
         {
-            MetadataReference.CreateFromFile(typeof(System.DirectoryServices.DirectorySearcher).Assembly.Location),
-            MetadataReference.CreateFromFile(typeof(System.Web.Mvc.Controller).Assembly.Location)
+            MetadataReference.CreateFromFile(typeof(DirectorySearcher).Assembly.Location),
+            MetadataReference.CreateFromFile(typeof(Controller).Assembly.Location)
         };
 
         protected override IEnumerable<MetadataReference> GetAdditionalReferences() => References;

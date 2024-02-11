@@ -1,9 +1,11 @@
 ﻿#nullable disable
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Resources;
+using YamlDotNet.Core.Tokens;
 using YamlDotNet.RepresentationModel;
 
 namespace SecurityCodeScan.Analyzers.Locale
@@ -24,8 +26,8 @@ namespace SecurityCodeScan.Analyzers.Locale
 
         private void Load()
         {
-            var assembly = typeof(YamlResourceManager).GetTypeInfo().Assembly;
-
+            //var assembly = typeof(YamlResourceManager).GetTypeInfo().Assembly;
+            var assembly = Assembly.GetExecutingAssembly();
             using (Stream stream = assembly.GetManifestResourceStream("SecurityCodeScan.Config." + MessagesFileName))
             using (var reader = new StreamReader(stream))
             {
@@ -40,6 +42,10 @@ namespace SecurityCodeScan.Analyzers.Locale
                     var value = (YamlMappingNode)entry.Value;
 
                     _LocaleKeyIds.Add(key.Value);
+                    if (value?.Children == null)
+                    {
+                        continue;
+                    }
 
                     foreach (var child in value.Children)
                     {
