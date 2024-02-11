@@ -15,7 +15,7 @@
 
   <PropertyGroup>
     <PackageId>AdaskoTheBeAsT.SecurityCodeScan.VS2022</PackageId>
-    <PackageVersion>5.6.7.17</PackageVersion>
+    <PackageVersion>5.6.7.18</PackageVersion>
     <Version>5.6.7</Version>
     <Authors>Jaroslav Lobačevski</Authors>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
@@ -38,7 +38,7 @@
     <PackageReference Include="ILRepack.Lib.MSBuild.Task" Version="2.0.26" PrivateAssets="all" ExcludeAssets="runtime" />-->
     <PackageReference Include="Microsoft.CodeAnalysis" Version="4.8.0" PrivateAssets="all" ExcludeAssets="runtime" GeneratePathProperty="true" />
     <!-- for now up to 15.1.1 is not compatible-->
-    <PackageReference Include="YamlDotNet" Version="13.7.1" GeneratePathProperty="true" />
+    <PackageReference Include="YamlDotNet" Version="13.7.1" PrivateAssets="all" ExcludeAssets="runtime" GeneratePathProperty="true" />
   </ItemGroup>
 
   <ItemGroup>
@@ -78,7 +78,7 @@
     <None Update="tools\*.*" CopyToOutputDirectory="Always" Pack="true" PackagePath="" />
     <None Include="$(TargetDir)$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet" Visible="false" />
     <None Include="$(TargetDir)$(AssemblyName).pdb" Pack="true" PackagePath="analyzers/dotnet" Visible="false" />
-    <!--<None Include="$(PkgYamlDotNet)\lib\netstandard2.0\YamlDotNet.dll" Pack="true" PackagePath="analyzers/dotnet" Visible="false" />-->
+    <None Include="$(PkgYamlDotNet)\lib\netstandard2.0\YamlDotNet.dll" Pack="true" PackagePath="analyzers/dotnet" Visible="false" />
   </ItemGroup>
 
 </Project>
