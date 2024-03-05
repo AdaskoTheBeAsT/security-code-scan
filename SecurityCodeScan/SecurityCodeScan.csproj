@@ -15,7 +15,7 @@
 
   <PropertyGroup>
     <PackageId>AdaskoTheBeAsT.SecurityCodeScan.VS2022</PackageId>
-    <PackageVersion>5.6.7.18</PackageVersion>
+    <PackageVersion>5.6.7.19</PackageVersion>
     <Version>5.6.7</Version>
     <Authors>Jaroslav Lobačevski</Authors>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
@@ -36,7 +36,9 @@
   <ItemGroup>
     <!--<PackageReference Include="ILRepack" Version="2.0.27" PrivateAssets="all" ExcludeAssets="runtime" GeneratePathProperty="true" />
     <PackageReference Include="ILRepack.Lib.MSBuild.Task" Version="2.0.26" PrivateAssets="all" ExcludeAssets="runtime" />-->
-    <PackageReference Include="Microsoft.CodeAnalysis" Version="4.8.0" PrivateAssets="all" ExcludeAssets="runtime" GeneratePathProperty="true" />
+    <PackageReference Include="Microsoft.CodeAnalysis" Version="4.9.2" PrivateAssets="all" ExcludeAssets="runtime" GeneratePathProperty="true">
+      <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <!-- for now up to 15.1.1 is not compatible-->
     <PackageReference Include="YamlDotNet" Version="13.7.1" PrivateAssets="all" ExcludeAssets="runtime" GeneratePathProperty="true" />
   </ItemGroup>
