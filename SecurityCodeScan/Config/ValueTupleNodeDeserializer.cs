@@ -8,7 +8,7 @@ namespace SecurityCodeScan.Config
 {
     internal class ValueTupleNodeDeserializer : INodeDeserializer
     {
-        public bool Deserialize(IParser parser, Type expectedType, Func<IParser, Type, object> nestedObjectDeserializer, out object value)
+        public bool Deserialize(IParser parser, Type expectedType, Func<IParser, Type, object> nestedObjectDeserializer, out object value, ObjectDeserializer rootDeserializer)
         {
             if (expectedType.IsGenericType && expectedType.GetGenericTypeDefinition() == typeof(ValueTuple<,>))
             {
