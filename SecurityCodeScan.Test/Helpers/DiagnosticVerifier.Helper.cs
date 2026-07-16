@@ -103,10 +103,9 @@ namespace SecurityCodeScan.Test.Helpers
                                                    ? await compilationWithAnalyzers.GetAllDiagnosticsAsync().ConfigureAwait(false)
                                                    : await compilationWithAnalyzers.GetAnalyzerDiagnosticsAsync().ConfigureAwait(false);
 
-                // workaround to suppress:
-                // warning CS1701: Assuming assembly reference 'mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089' used by 'NHibernate' matches identity 'mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089' of 'mscorlib', you may need to supply runtime policy
-                // in NHibernateSqlInjection
-                var filtered = diags.Where(x => x.Id != "CS1701");
+                // Suppress assembly unification warnings from test-only dependency combinations.
+                // They do not describe problems in the source snippets being analyzed.
+                var filtered = diags.Where(x => x.Id != "CS1701" && x.Id != "CS1702");
 
                 foreach (var diag in filtered)
                 {

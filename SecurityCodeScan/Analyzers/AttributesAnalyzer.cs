@@ -317,11 +317,7 @@ namespace SecurityCodeScan.Analyzers
         {
             foreach (var requiredAttribute in includedAttributes)
             {
-                var type = WellKnownTypeProvider.GetOrCreateTypeByMetadataName(requiredAttribute.Key);
-                if (type == null)
-                    continue;
-
-                (bool found, bool satisfies) = RequiredAttributeExists(tryGetDerivedAttribute, type, requiredAttribute.Value, excludedAttributes);
+                (bool found, bool satisfies) = RequiredAttributeExists(tryGetDerivedAttribute, requiredAttribute.Key, requiredAttribute.Value, excludedAttributes);
                 if (found)
                     return satisfies;
             }
@@ -331,7 +327,7 @@ namespace SecurityCodeScan.Analyzers
 
         private (bool found, bool satisfies) RequiredAttributeExists(
             Func<Func<AttributeData, bool>, AttributeData> tryGetDerivedAttribute,
-            INamedTypeSymbol type,
+            string typeName,
             List<AttributeCondition> conditions,
             Dictionary<string, List<AttributeCondition>> excludedAttributes)
         {
@@ -340,29 +336,24 @@ namespace SecurityCodeScan.Analyzers
             var attr = tryGetDerivedAttribute(c =>
             {
                 if (hasConditions)
-                    return Equals(c.AttributeClass, type);
+                    return c.AttributeClass?.GetTypeName() == typeName;
 
                 var attributeClass = c.AttributeClass;
-                if (type.TypeKind == TypeKind.Interface)
+                if (attributeClass.AllInterfaces.Any(x => x.GetTypeName() == typeName))
                 {
-                    if (attributeClass.AllInterfaces.Any(x => Equals(x, type)))
-                    {
-                        if (excludedAttributes == null || !excludedAttributes.Any(x => WellKnownTypeProvider.GetOrCreateTypeByMetadataName(x.Key).Equals(attributeClass)))
-                            return true;
-                    }
+                    if (excludedAttributes == null || !excludedAttributes.ContainsKey(attributeClass.GetTypeName()))
+                        return true;
                 }
-                else
-                {
-                    while (attributeClass != null)
-                    {
-                        if (Equals(attributeClass, type) &&
-                        (excludedAttributes == null || !excludedAttributes.Any(x => WellKnownTypeProvider.GetOrCreateTypeByMetadataName(x.Key).Equals(attributeClass))))
-                        {
-                            return true;
-                        }
 
-                        attributeClass = attributeClass.BaseType;
+                while (attributeClass != null)
+                {
+                    if (attributeClass.GetTypeName() == typeName &&
+                        (excludedAttributes == null || !excludedAttributes.ContainsKey(attributeClass.GetTypeName())))
+                    {
+                        return true;
                     }
+
+                    attributeClass = attributeClass.BaseType;
                 }
 
                 return false;
@@ -373,5 +364,6 @@ namespace SecurityCodeScan.Analyzers
 
             return (false, false);
         }
+
     }
 }

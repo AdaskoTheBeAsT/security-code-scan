@@ -110,6 +110,8 @@ End Namespace
         private static readonly PortableExecutableReference[] References =
         {
             MetadataReference.CreateFromFile(typeof(XmlFileInfoDocument).Assembly.Location),
+            MetadataReference.CreateFromFile(Assembly.Load("netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51")
+                                                     .Location),
         };
 
         /// <summary> XML parsing vulnerable to XXE </summary>
