@@ -15,8 +15,8 @@
 
   <PropertyGroup>
     <PackageId>AdaskoTheBeAsT.SecurityCodeScan.VS2022</PackageId>
-    <PackageVersion>5.6.7.200</PackageVersion>
-    <Version>5.6.7.200</Version>
+    <PackageVersion>5.6.7.250</PackageVersion>
+    <Version>5.6.7.250</Version>
     <Authors>Jaroslav Lobačevski</Authors>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
@@ -35,10 +35,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Build.Framework" Version="18.8.2" ExcludeAssets="runtime" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Build.Framework" Version="18.9.6" ExcludeAssets="runtime" PrivateAssets="all">
+      <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <!--<PackageReference Include="ILRepack" Version="2.0.27" PrivateAssets="all" ExcludeAssets="runtime" GeneratePathProperty="true" />
     <PackageReference Include="ILRepack.Lib.MSBuild.Task" Version="2.0.26" PrivateAssets="all" ExcludeAssets="runtime" />-->
-    <PackageReference Include="Microsoft.CodeAnalysis" Version="5.6.0" PrivateAssets="all" ExcludeAssets="runtime" GeneratePathProperty="true">
+    <PackageReference Include="Microsoft.CodeAnalysis" Version="5.9.0" PrivateAssets="all" ExcludeAssets="runtime" GeneratePathProperty="true">
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <!-- for now up to 15.1.1 is not compatible-->
