@@ -22,7 +22,7 @@ namespace SecurityCodeScan.Test.Audit
 
         [DataRow("CryptoConfig.CreateFromName(name)", true)]
         [DataRow("CryptoConfig.CreateFromName(name)", false)]
-        [DataTestMethod]
+        [TestMethod]
         public async Task HashCreateAuditMode(string create, bool auditMode)
         {
             var cSharpTest = $@"

@@ -60,7 +60,7 @@ End Class
         [TestCategory("Detect")]
         [DataRow("MD5",  "MD5.Create")]
         [DataRow("SHA1", "SHA1.Create")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task Delegate(string type, string create)
         {
             var cSharpTest = $@"
@@ -102,7 +102,7 @@ End Class
         [TestCategory("Detect")]
         [DataRow("MD5",  "MD5.Create")]
         [DataRow("SHA1", "SHA1.Create")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task Func(string type, string create)
         {
             var cSharpTest = $@"
@@ -167,7 +167,7 @@ End Class
         [TestCategory("Detect")]
         [DataRow("MD5",  "MD5.Create")]
         [DataRow("SHA1", "SHA1.Create")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task SameLine(string type, string create)
         {
             var cSharpTest = $@"
@@ -211,7 +211,7 @@ End Class
         [TestCategory("Detect")]
         [DataRow("MD5", "MD5.Create")]
         [DataRow("SHA1", "SHA1.Create")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task Lazy(string type, string create)
         {
             var cSharpTest = $@"
@@ -255,7 +255,7 @@ End Class
         [DataRow("SHA1CryptoServiceProvider")]
         [DataRow("SHA1Managed")]
         [DataRow("SHA1Cng")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task ExternalFunction(string type)
         {
             var cSharpTest = $@"
@@ -317,7 +317,7 @@ End Class
         [DataRow("HashAlgorithm.Create(\"SHA1\")")]
         [DataRow("HashAlgorithm.Create(\"System.Security.Cryptography.HashAlgorithm\")")]
         [DataRow("HashAlgorithm.Create()")] // the default is sha1 https://msdn.microsoft.com/en-us/library/b0ky3sbb(v=vs.110).aspx
-        [DataTestMethod]
+        [TestMethod]
         public async Task Create(string create)
         {
             var cSharpTest = $@"
@@ -358,7 +358,7 @@ End Class
         [DataRow("HashAlgorithm.Create(name)")]
         [DataRow("HashAlgorithm.Create(Sha1Name)")]
         // [DataRow("HashAlgorithm.Create(Sha256Name)")] todo: property check not implemented
-        [DataTestMethod]
+        [TestMethod]
         public async Task HashCreateSafe(string create)
         {
             var cSharpTest = $@"

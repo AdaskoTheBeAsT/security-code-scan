@@ -37,7 +37,7 @@ namespace SecurityCodeScan.Test
         protected override IEnumerable<MetadataReference> GetAdditionalReferences() => References;
 
         [TestCategory("Safe")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("var httpClientHandler = new HttpClientHandler();",             "httpClientHandler.ServerCertificateCustomValidationCallback", "GetCallbacks2")]
         [DataRow("var request = (Rqst)WebRequest.Create(\"https://hack.me/\");", "request.ServerCertificateValidationCallback",                 "GetCallbacks")]
         [DataRow("var request = new WebRequestHandler();",                       "request.ServerCertificateValidationCallback",                 "GetCallbacks")]
@@ -87,7 +87,7 @@ public class WeakCert
         }
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("var httpClientHandler = new HttpClientHandler();",             "httpClientHandler.ServerCertificateCustomValidationCallback", "GetCallbacks2")]
         [DataRow("var request = (Rqst)WebRequest.Create(\"https://hack.me/\");", "request.ServerCertificateValidationCallback",                 "GetCallbacks")]
         [DataRow("var request = new WebRequestHandler();",                       "request.ServerCertificateValidationCallback",                 "GetCallbacks")]
@@ -166,7 +166,7 @@ AuditMode: true
         // todo: add ServicePointManager.CertificatePolicy tests
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("var httpClientHandler = new HttpClientHandler();",             "httpClientHandler.ServerCertificateCustomValidationCallback", "GetCallbacks2")]
         [DataRow("var request = (Rqst)WebRequest.Create(\"https://hack.me/\");", "request.ServerCertificateValidationCallback",                 "GetCallbacks")]
         [DataRow("var request = new WebRequestHandler();",                       "request.ServerCertificateValidationCallback",                 "GetCallbacks")]
@@ -209,7 +209,7 @@ public class WeakCert
         }
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         // todo: error BC30676: 'ServerCertificateValidationCallback' is not an event of 'ServicePointManager'.
         //[DataRow(@"AddHandler ServicePointManager.ServerCertificateValidationCallback, Function(sender, cert, chain, sslPolicyErrors) True")]
         // todo: error BC30452: Operator '+' is not defined for types 'RemoteCertificateValidationCallback' and

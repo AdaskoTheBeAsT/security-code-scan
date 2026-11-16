@@ -52,7 +52,7 @@ namespace SecurityCodeScan.Test.InsecureCookie
             ExpectedSCS0009
         };
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("Microsoft.AspNetCore.Mvc", "Microsoft.AspNetCore.Http", @"Response.Cookies.Append(""aaa"", ""secret"", cookie)", "var cookie = new CookieOptions(); cookie.Secure = true; cookie.HttpOnly = true;", "CookieOptions")]
         [DataRow("Microsoft.AspNetCore.Mvc", "Microsoft.AspNetCore.Http", @"Response.Cookies.Append(""aaa"", ""secret"", cookie)", "var cookie = new CookieOptions(); cookie.Secure = true; cookie.HttpOnly = true; cookie.HttpOnly = false;", "CookieOptions", "SCS0009")]
         [DataRow("Microsoft.AspNetCore.Mvc", "Microsoft.AspNetCore.Http", @"Response.Cookies.Append(""aaa"", ""secret"", cookie)", "var cookie = new CookieOptions(); cookie.Secure = true; cookie.HttpOnly = true; cookie.HttpOnly = false; cookie.HttpOnly = true;", "CookieOptions")]
@@ -143,7 +143,7 @@ End Namespace
             }
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("Microsoft.AspNetCore.Mvc", "Microsoft.AspNetCore.Http", @"Response.Cookies.Append(""aaa"", ""secret"", cookie)", "var cookie = new CookieOptions(); cookie.Secure = true; cookie.HttpOnly = true;")]
         [DataRow("Microsoft.AspNetCore.Mvc", "Microsoft.AspNetCore.Http", @"Response.Cookies.Append(""aaa"", ""secret"", cookie)", "var cookie = new CookieOptions(); cookie.Secure = true; cookie.HttpOnly = true; cookie.HttpOnly = false;", "SCS0009")]
         [DataRow("Microsoft.AspNetCore.Mvc", "Microsoft.AspNetCore.Http", @"Response.Cookies.Append(""aaa"", ""secret"", cookie)", "var cookie = new CookieOptions(); cookie.Secure = true; cookie.HttpOnly = true; cookie.HttpOnly = false; cookie.HttpOnly = true;")]
@@ -216,7 +216,7 @@ End Namespace
             }
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("Microsoft.AspNetCore.Mvc", "Microsoft.AspNetCore.Http", @"Response.Cookies.Append(""aaa"", ""secret"", cookie)", "cookie = new CookieOptions(); cookie.Secure = true; cookie.HttpOnly = true;", "CookieOptions")]
         [DataRow("Microsoft.AspNetCore.Mvc", "Microsoft.AspNetCore.Http", @"Response.Cookies.Append(""aaa"", ""secret"", cookie)", "cookie = new CookieOptions(); cookie.Secure = true; cookie.HttpOnly = true; cookie.HttpOnly = false;", "CookieOptions", "SCS0009")]
         [DataRow("Microsoft.AspNetCore.Mvc", "Microsoft.AspNetCore.Http", @"Response.Cookies.Append(""aaa"", ""secret"", cookie)", "cookie = new CookieOptions(); cookie.Secure = true; cookie.HttpOnly = true; cookie.HttpOnly = false; cookie.HttpOnly = true;", "CookieOptions")]
@@ -312,7 +312,7 @@ End Namespace
         }
 
         [TestCategory("Safe")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("System.Web",           @"System.Web.HttpCookie(""test"")",           "Response.Cookies.Set(cookie)")]
         [DataRow("Microsoft.AspNetCore", @"Microsoft.AspNetCore.Http.CookieOptions()", "Response.Cookies.Append(\"\", \"\", cookie)")]
         public async Task CookieWithUnknownFlags(string @namespace, string constructor, string payload)

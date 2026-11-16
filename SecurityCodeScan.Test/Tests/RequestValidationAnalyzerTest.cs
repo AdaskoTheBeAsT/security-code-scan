@@ -803,7 +803,7 @@ End Namespace
         [TestCategory("Detect")]
         [DataRow("System.Web.Mvc",                          "AllowHtml")]
         [DataRow("AH = System.Web.Mvc.AllowHtmlAttribute",  "AH")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task DetectAllowHtmlAttribute(string nameSpace, string attribute)
         {
             var cSharpTest = $@"

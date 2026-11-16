@@ -299,7 +299,7 @@ End Namespace
         [DataRow("new SqlDatabase(\"connectionString\").ExecuteScalar(new SqlCommand(input))", true, "SCS0002")]
         [DataRow("new SqlDatabase(\"connectionString\").ExecuteScalar(new SqlCommand(input), new SqlConnection(\"\").BeginTransaction())", true, "SCS0002")]
 
-        [DataTestMethod]
+        [TestMethod]
         public async Task SqlInjection(string sink, bool warn, string warningId)
         {
             var cSharpTest = $@"
@@ -380,7 +380,7 @@ End Namespace
         [DataRow("new DbContext(\"connectionString\").Database.ExecuteSqlCommandAsync(\"select\", new CancellationToken(), parameters)", false, null)]
         [DataRow("new DbContext(\"connectionString\").Database.ExecuteSqlCommandAsync(TransactionalBehavior.DoNotEnsureTransaction, input, new CancellationToken(), parameters)", true, "SCS0002")]
         [DataRow("new DbContext(\"connectionString\").Database.ExecuteSqlCommandAsync(TransactionalBehavior.DoNotEnsureTransaction, \"select\", new CancellationToken(), parameters)", false, null)]
-        [DataTestMethod]
+        [TestMethod]
         public async Task AwaitedSqlInjection(string sink, bool warn, string warningId)
         {
             var cSharpTest = $@"
@@ -467,7 +467,7 @@ End Namespace
         [DataRow("new SampleContext().Database.ExecuteSqlCommand(\"select\")", false)]
         [DataRow("new SampleContext().Database.ExecuteSqlCommand(\"select\", null)", false)]
         [DataRow("new SampleContext().Database.ExecuteSqlCommand(\"select {0}\", input)", false)]
-        [DataTestMethod]
+        [TestMethod]
         public async Task SqlInjectionEntityFrameworkCore(string sink, bool warn, bool obsolete = false)
         {
             var cSharpTest = $@"
@@ -546,7 +546,7 @@ End Namespace
         [DataRow("new SqliteCommand(\"select\", new SqliteConnection())",                                            false)]
         [DataRow("new SqliteCommand(input, null, null)",                                                             true)]
         [DataRow("new SqliteCommand(\"select\", new SqliteConnection(), new SqliteConnection().BeginTransaction())", false)]
-        [DataTestMethod]
+        [TestMethod]
         public async Task MicrosoftSqlite(string sink, bool warn)
         {
             var cSharpTest = $@"
@@ -601,7 +601,7 @@ End Namespace
 
         [DataRow("\"SELECT * FROM Users WHERE username = '\" + username + \"';\"", true)]
         [DataRow("\"SELECT * FROM Users WHERE username = 'indy@email.com';\"", false)]
-        [DataTestMethod]
+        [TestMethod]
         public async Task NHibernateSqlInjection(string sink, bool warn)
         {
             var testConfig = @"
@@ -669,7 +669,7 @@ End Namespace
         [DataRow("\"SELECT * FROM Users WHERE username = 'indy@email.com';\"",                           false)]
         [DataRow("\"SELECT * FROM Users WHERE username = 'indy@email.com';\", 1",                        false)]
         [DataRow("\"SELECT * FROM Users WHERE username = 'indy@email.com';\", ConsistencyLevel.All",     false)]
-        [DataTestMethod]
+        [TestMethod]
         public async Task CassandraCqlInjection(string sink, bool warn)
         {
             var testConfig = @"
@@ -738,7 +738,7 @@ End Namespace
         [DataRow("var sql = new NpgsqlCommand(\"SELECT * FROM users WHERE username = 'indy@email.com';\", null);",            false)]
         [DataRow("var sql = new NpgsqlCommand(\"SELECT * FROM users WHERE username = 'indy@email.com';\", null, null);",      false)]
         [DataRow("var sql = new NpgsqlCommand(); sql.CommandText = \"SELECT * FROM users WHERE username = 'indy@email.com';\";", false)]
-        [DataTestMethod]
+        [TestMethod]
         public async Task NpgsqlInjection(string sink, bool warn)
         {
             var testConfig = @"

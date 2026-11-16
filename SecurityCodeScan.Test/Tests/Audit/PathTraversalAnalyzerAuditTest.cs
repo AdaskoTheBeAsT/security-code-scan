@@ -84,7 +84,7 @@ namespace SecurityCodeScan.Test.Audit
         [DataRow("var a = new FileStream(path, FileMode.Open)")]
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task PathTraversalMethods(string sink)
         {
             var cSharpTest = $@"
@@ -275,7 +275,7 @@ End Class
 
         [DataRow("var a = new FileStream(\"\", FileMode.Open)")]
 
-        [DataTestMethod]
+        [TestMethod]
         public async Task PathTraversalMethodsConst(string sink)
         {
             var cSharpTest = $@"
@@ -339,7 +339,7 @@ End Class
         [DataRow("XmlReader.Create(textInput, new XmlReaderSettings())")]
         [DataRow("XmlReader.Create(textInput, new XmlReaderSettings(), default(XmlParserContext))")]
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task PathTraversalXmlReader(string sink)
         {
             var cSharpTest = $@"

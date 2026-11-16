@@ -62,7 +62,7 @@ End Class
 
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("Rndm = System.Random",    "Rndm")]
         [DataRow("System",                  "Random")]
         public async Task WeakRandomNumberGeneration(string alias, string name)

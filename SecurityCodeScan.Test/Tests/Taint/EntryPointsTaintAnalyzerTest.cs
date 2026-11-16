@@ -33,7 +33,7 @@ namespace SecurityCodeScan.Test.Taint
 
         protected override IEnumerable<MetadataReference> GetAdditionalReferences() => References;
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("System.Web.Http", "public ", "MyController", "ApiController", true)]
         [DataRow("System.Web.Http", "internal ", "MyController", "ApiController", false)]
         [DataRow("System.Web.Http", "public ", "Mu",           "ApiController", false)]
@@ -160,7 +160,7 @@ Sinks:
 
         protected override IEnumerable<MetadataReference> GetAdditionalReferences() => References;
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("input", true)]
         [DataRow("Request.ToString()", false)]
         [DataRow("Request.AcceptTypes[0]", true)]
@@ -272,7 +272,7 @@ Sinks:
             }
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("System.Web.Mvc", "public ", "MyController", "Controller", true)]
         [DataRow("System.Web.Mvc", "public ", "MyController", "System.Object", false)]
         [DataRow("System.Web.Mvc", "public ", "Mu", "Controller", false)]
@@ -405,7 +405,7 @@ Sinks:
             Severity = DiagnosticSeverity.Warning,
         };
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("input", true)]
         [DataRow("Request.ToString()", false)]
         [DataRow("Request.Body.ToString()", true)]
@@ -485,7 +485,7 @@ Sinks:
             }
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("Microsoft.AspNetCore.Mvc", "public ",   "MyController", "Controller", true)]
         [DataRow("Microsoft.AspNetCore.Mvc", "internal ", "MyController", "Controller", false)]
         [DataRow("Microsoft.AspNetCore.Mvc", "public ", "MyController", "System.Object", true)]
@@ -611,7 +611,7 @@ Sinks:
 
         protected override IEnumerable<MetadataReference> GetAdditionalReferences() => References;
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("Microsoft.AspNetCore.Mvc", "public ",   "MyController", "ControllerBase", true, "ApiController")]
         [DataRow("Microsoft.AspNetCore.Mvc", "internal ", "MyController", "ControllerBase", false, "ApiController")]
 
@@ -750,7 +750,7 @@ Sinks:
 
         protected override IEnumerable<MetadataReference> GetAdditionalReferences() => References;
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("String", "String", true,  "input")]
         [DataRow("DTO",    "DTO",    true,  "input")]
         [DataRow("DTO",    "String", true,  "input.value")]
@@ -888,7 +888,7 @@ Sinks:
 
         protected override IEnumerable<MetadataReference> GetAdditionalReferences() => References;
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("String", "String", false, "NonHandler", "OnGet",          "input")]
         [DataRow("String", "String", true,  "",           "OnGet",          "input")]
         [DataRow("String", "String", true,  "",           "OnPost",         "input")]

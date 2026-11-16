@@ -61,7 +61,7 @@ namespace SecurityCodeScan.Test.Taint
 
         protected override IEnumerable<MetadataReference> GetAdditionalReferences() => References;
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("System.String",           "System.String", "value = input", true)]
         [DataRow("System.Byte",             "System.String", "value = input.ToString()", false)]
         [DataRow("System.SByte",            "System.String", "value = input.ToString()", false)]
@@ -381,7 +381,7 @@ Sinks:
             await VerifyVisualBasicDiagnostic(visualBasicTest, null, optionsWithProjectConfig).ConfigureAwait(false);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("using System; using System.Web.Mvc;",           "!!Url.IsLocalUrl(input)",                                   "Redirect(input)",          false)]
         [DataRow("using System; using System.Web.Mvc;",           "Url.IsLocalUrl(input)",                                     "Redirect(input)",          false)]
         // todo: roslyn conditional branches
@@ -465,7 +465,7 @@ End Namespace
             }
         }
 
-        [DataTestMethod]
+        [TestMethod]
         //todo: roslyn conditional branches
         //[DataRow("using System; using System.Web.Mvc;", "!System.String.IsNullOrWhiteSpace(input) && !Url.IsLocalUrl(input)", "Redirect(input)", false)]
         [DataRow("using System; using System.Web.Mvc;", "!Url.IsLocalUrl(input)", "Redirect(input)", false)]
@@ -640,7 +640,7 @@ End Namespace
         }
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(@"var s = new SqlCommand(input);",                                             "SCS0002")]
 
         [DataRow(@"Redirect(input);",                                                           "SCS0027")]

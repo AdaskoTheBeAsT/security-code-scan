@@ -102,7 +102,7 @@ End Namespace
         }
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         //[DataRow("DESCryptoServiceProvider", "IV = System.Text.Encoding.Default.GetBytes(\"abc\")", true)] // todo:
         [DataRow("DESCryptoServiceProvider", "IV = new byte[] { 5, 17, 29, 41, 53, 65, 77, 89 }",   true)]
         //[DataRow("DESCryptoServiceProvider", "Key = System.Text.Encoding.Default.GetBytes(\"abc\")", true)] // todo:

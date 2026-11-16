@@ -166,7 +166,7 @@ End Namespace
         }
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("Objects")]
         [DataRow("Arrays")]
         [DataRow("All")]
@@ -277,7 +277,7 @@ namespace VulnerableApp
         }
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("Objects")]
         [DataRow("Arrays")]
         [DataRow("All")]

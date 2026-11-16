@@ -26,7 +26,7 @@ namespace SecurityCodeScan.Test.Taint
         protected override IEnumerable<MetadataReference> GetAdditionalReferences() => References;
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("SqliteCommand", "Microsoft.Data.Sqlite")]
         [DataRow("SQLiteCommand", "System.Data.SQLite")]
         [DataRow("SqlCommand",    "System.Data.SqlClient")]

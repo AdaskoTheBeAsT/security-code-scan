@@ -23,7 +23,7 @@ namespace SecurityCodeScan.Test.Password
         [DataRow("String.Empty")]
         [DataRow("\"\"")]
         [DataRow("input")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task HardCodePasswordFalsePositive(string value)
         {
             var vbValue = value.CSharpReplaceToVBasic();

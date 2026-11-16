@@ -21,7 +21,7 @@ namespace SecurityCodeScan.Test
         [DataRow("<pages validateRequest=\" False \"></pages>", "<pages validateRequest=\" False \">")]
         [DataRow("<pages validateRequest=\"false\" />",       "<pages validateRequest=\"false\" />")]
         [DataRow("<pages validateRequest=\" False \" />",       "<pages validateRequest=\" False \" />")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task ValidateRequestVulnerable(string element, string expectedNode)
         {
             var config = $@"
@@ -76,7 +76,7 @@ namespace SecurityCodeScan.Test
         [DataRow("<httpRuntime requestValidationMode=\"3.0\" />",             "<httpRuntime requestValidationMode=\"3.0\" />")]
         [DataRow("<httpRuntime requestValidationMode=\"3.5\"></httpRuntime>", "<httpRuntime requestValidationMode=\"3.5\">")]
         [DataRow("<httpRuntime requestValidationMode=\"3.5\" />",             "<httpRuntime requestValidationMode=\"3.5\" />")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task RequestValidationModeVulnerable(string element, string expectedNode)
         {
             var config = $@"
@@ -132,7 +132,7 @@ namespace SecurityCodeScan.Test
         [DataRow("<httpRuntime requestValidationMode=\"3.0\" />", "<httpRuntime requestValidationMode=\"3.0\" />")]
         [DataRow("<httpRuntime requestValidationMode=\"3.5\"></httpRuntime>", "<httpRuntime requestValidationMode=\"3.5\">")]
         [DataRow("<httpRuntime requestValidationMode=\"3.5\" />", "<httpRuntime requestValidationMode=\"3.5\" />")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task RequestValidationModeLocationVulnerable(string element, string expectedNode)
         {
             var config = $@"
@@ -210,7 +210,7 @@ namespace SecurityCodeScan.Test
         [DataRow("<pages enableEventValidation=\" False \"></pages>", "<pages enableEventValidation=\" False \">")]
         [DataRow("<pages enableEventValidation=\"false\" />",       "<pages enableEventValidation=\"false\" />")]
         [DataRow("<pages enableEventValidation=\" False \" />",       "<pages enableEventValidation=\" False \" />")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task EnableEventValidationVulnerable(string element, string expectedNode)
         {
             var config = $@"
@@ -281,7 +281,7 @@ namespace SecurityCodeScan.Test
         [DataRow("<pages viewStateEncryptionMode=\"Always\"></pages>",
             "<pages viewStateEncryptionMode=\"Auto\"></pages>",
             "<pages viewStateEncryptionMode=\"Auto\">", 5)]
-        [DataTestMethod]
+        [TestMethod]
         public async Task ViewStateEncryptionModeVulnerable(string mainElement, string locationElement, string expectedNode, int line)
         {
             var config = $@"
@@ -339,7 +339,7 @@ namespace SecurityCodeScan.Test
         [DataRow("<pages enableViewStateMac=\" False \"></pages>", "<pages enableViewStateMac=\" False \">")]
         [DataRow("<pages enableViewStateMac=\"false\" />",       "<pages enableViewStateMac=\"false\" />")]
         [DataRow("<pages enableViewStateMac=\" False \" />",       "<pages enableViewStateMac=\" False \" />")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task EnableViewStateMacVulnerable(string element, string expectedNode)
         {
             var config = $@"

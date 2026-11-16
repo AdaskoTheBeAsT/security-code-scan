@@ -86,7 +86,7 @@ namespace SecurityCodeScan.Test.Taint
         [DataRow("FS.WriteAllText(path, \"\", System.Text.Encoding.ASCII)")]
         [DataRow("WriteAllText(path, \"\", System.Text.Encoding.ASCII)")]
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task PathTraversalMethods(string sink)
         {
             var cSharpTest = $@"
@@ -199,7 +199,7 @@ End Class
         [DataRow("FS.WriteAllText(\"c:\\aaa.txt\", path, encoding)")]
         [DataRow("WriteAllText(\"c:\\aaa.txt\", path, encoding)")]
         [TestCategory("Safe")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task PathTraversalMethodsConst(string sink)
         {
             var cSharpTest = $@"
@@ -251,7 +251,7 @@ End Class
             await VerifyVisualBasicDiagnostic(visualBasicTest).ConfigureAwait(false);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("FS.OpenRead(Server.MapPath(Request[\"file\"]))")]
         [DataRow("FS.OpenRead(Request.MapPath(Request[\"file\"]))")]
         [DataRow("FS.OpenRead(provider.GetFileInfo(Request[\"file\"]).PhysicalPath)")]
@@ -308,7 +308,7 @@ End Class
         [DataRow("StreamWriter(input, false, System.Text.Encoding.ASCII)")]
         [DataRow("StreamWriter(input, false, System.Text.Encoding.ASCII, 10)")]
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task PathTraversalNewObject(string sink)
         {
             var cSharpTest = $@"
@@ -404,7 +404,7 @@ End Class
         [DataRow("FileStream(\"\", FileMode.CreateNew, fileSystemRights,        FileShare.Read, 10, FileOptions.None)")]
         [DataRow("FileStream(\"\", FileMode.CreateNew, FileSystemRights.Read,   FileShare.Read, 10, FileOptions.None, fileSecurity)")]
         [TestCategory("Safe")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task PathTraversalNewObjectConst(string sink)
         {
             var cSharpTest = $@"
@@ -469,7 +469,7 @@ End Class
         [DataRow("XmlReader.Create(default(TextReader), settings, default(XmlParserContext))")]
         [DataRow("XmlReader.Create(default(XmlReader), settings)")]
         [TestCategory("Safe")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task PathTraversalXmlReaderConst(string sink)
         {
             var cSharpTest = $@"
@@ -511,7 +511,7 @@ End Class
 
         [DataRow("fileUpload.SaveAs(path)")]
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task PathTraversalFileUploadSaveAs(string sink)
         {
             var cSharpTest = $@"
@@ -561,7 +561,7 @@ End Class
 
         [DataRow("fileUpload.SaveAs(\"\")")]
         [TestCategory("Safe")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task PathTraversalFileUploadSaveAsConst(string sink)
         {
             var cSharpTest = $@"

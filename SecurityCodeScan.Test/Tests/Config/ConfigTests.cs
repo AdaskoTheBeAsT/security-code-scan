@@ -51,7 +51,7 @@ Sanitizers:
             [{ ""s"": ""output""}]
 
 ");
-            Assert.ThrowsException<ArgumentException>(() => new Configuration(ConfigurationManager.GetProjectConfiguration(options.AdditionalFiles), null).TaintConfiguration);
+            Assert.Throws<ArgumentException>(() => new Configuration(ConfigurationManager.GetProjectConfiguration(options.AdditionalFiles), null).TaintConfiguration);
         }
 
         [TestMethod]
@@ -79,14 +79,14 @@ Sanitizers:
       - Name: UrlEncode
 
 ");
-            Assert.ThrowsException<ArgumentException>(() => new Configuration(ConfigurationManager.GetProjectConfiguration(options.AdditionalFiles), null).TaintConfiguration);
+            Assert.Throws<ArgumentException>(() => new Configuration(ConfigurationManager.GetProjectConfiguration(options.AdditionalFiles), null).TaintConfiguration);
         }
 
         [TestMethod]
         public void DifferentConfigVersion_Exception()
         {
             var options = ConfigurationTest.CreateAnalyzersOptionsWithConfig("MinimumPasswordValidatorProperties: 0", new Version(1,2));
-            Assert.ThrowsException<ArgumentException>(() => new Configuration(ConfigurationManager.GetProjectConfiguration(options.AdditionalFiles), null));
+            Assert.Throws<ArgumentException>(() => new Configuration(ConfigurationManager.GetProjectConfiguration(options.AdditionalFiles), null));
         }
     }
 }

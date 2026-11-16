@@ -22,7 +22,7 @@ namespace SecurityCodeScan.Test
         [DataRow("<% @   page validateRequest  =\"false\"")]
         [DataRow("<% @   page validateRequest  =  \"false\"")]
         [DataRow("<%@page VAlidateRequest=\"  FAlse  \"")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task HtmlValidateRequestVulnerable(string element)
         {
             var html = $@"

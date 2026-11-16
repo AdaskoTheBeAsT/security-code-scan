@@ -35,7 +35,7 @@ namespace SecurityCodeScan.Test.Taint
         protected override IEnumerable<MetadataReference> GetAdditionalReferences() => References;
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("string var1 = input; if (var1 == null) var1 = \"const\";",
                  "Dim var1 As String = input\r\nIf var1 Is Nothing Then var1 = \"const\"", true)]
         [DataRow("string var1 = \"const\"; if (var1 == null) var1 = input;",

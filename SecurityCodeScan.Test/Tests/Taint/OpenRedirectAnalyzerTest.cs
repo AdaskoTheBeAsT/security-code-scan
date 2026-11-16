@@ -46,7 +46,7 @@ namespace SecurityCodeScan.Test.Taint
         [DataRow("System.Web",                "Response.RedirectPermanent(input, true)")]
         [DataRow("Microsoft.AspNetCore.Http", "Response.Redirect(input)")]
         [DataRow("Microsoft.AspNetCore.Http", "Response.Redirect(input, true)")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task OpenRedirect(string @namespace, string sink)
         {
             var cSharpTest = $@"
@@ -94,7 +94,7 @@ TaintEntryPoints:
         [DataRow("System.Web",                "Response.RedirectPermanent(\"\", flag)")]
         [DataRow("Microsoft.AspNetCore.Http", "Response.Redirect(\"\")")]
         [DataRow("Microsoft.AspNetCore.Http", "Response.Redirect(\"\", flag)")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task OpenRedirectConst(string @namespace, string sink)
         {
             var cSharpTest = $@"
@@ -147,7 +147,7 @@ TaintEntryPoints:
         [DataRow("Microsoft.AspNetCore.Mvc", "new RedirectResult(input, true, true)")]
         [DataRow("Microsoft.AspNetCore.Mvc", "RedirectPreserveMethod(input)")]
         [DataRow("Microsoft.AspNetCore.Mvc", "RedirectPermanentPreserveMethod(input)")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task OpenRedirectController(string @namespace, string sink)
         {
             var cSharpTest = $@"
@@ -191,7 +191,7 @@ End Class
         [DataRow("Microsoft.AspNetCore.Mvc", "RedirectPreserveMethod(\"\")")]
         [DataRow("Microsoft.AspNetCore.Mvc", "RedirectPermanentPreserveMethod(\"\")")]
         [DataRow("System.Web.Mvc",           "Redirect(Url.RouteUrl(new {controller = input}) + \"#Id\")")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task OpenRedirectControllerConst(string @namespace, string sink)
         {
             var cSharpTest = $@"
@@ -225,7 +225,7 @@ End Class
 
         [TestCategory("Detect")]
         [DataRow("Microsoft.AspNetCore.Mvc")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task OpenRedirectController2(string @namespace)
         {
             var cSharpTest1 = $@"
@@ -276,7 +276,7 @@ End Class
         [TestCategory("Safe")]
         [DataRow("Microsoft.AspNetCore.Mvc", "Url = \"\"")]
         [DataRow("Microsoft.AspNetCore.Mvc", "Url = Url.RouteUrl(input)")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task OpenRedirectController2Const(string @namespace, string sink)
         {
             var cSharpTest1 = $@"
@@ -330,7 +330,7 @@ End Class
         [DataRow("true", "string scary", "(scary)", true)]
         [DataRow("true", "", "{x = 0}", false)]
         [DataRow("false", "", "{x = 0}", false)]
-        [DataTestMethod]
+        [TestMethod]
         public async Task ConditionalConstructorOpenRedirectCSharp(string injectableByDefault, string arguments, string parameters, bool warn)
         {
             var cSharpTest = $@"
@@ -393,7 +393,7 @@ Sinks:
         [DataRow("True",  "ByVal scary As String", "(scary)",                    true)]
         [DataRow("True",  "",                      " With {.x = 0}",             false)]
         [DataRow("False", "",                      " With {.x = 0}",             false)]
-        [DataTestMethod]
+        [TestMethod]
         public async Task ConditionalConstructorOpenRedirectVBasic(string injectableByDefault, string arguments, string parameters, bool warn)
         {
             var vbTest = $@"

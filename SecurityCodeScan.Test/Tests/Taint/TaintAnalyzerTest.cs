@@ -118,7 +118,7 @@ Transfers:
             await VerifyVisualBasicDiagnostic(vbTest, Expected.WithLocation(14), testConfig).ConfigureAwait(false);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("Injectable", "userProvided, userProvided",            true)]
         [DataRow("Injectable", "\"\", userProvided",                    false)]
         [DataRow("Injectable", "userProvided, \"\"",                    true)]
@@ -403,7 +403,7 @@ End Namespace
         }
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("st.Append(id);")]
         [DataRow("st.AppendFormat(id, \"1\");")]
         [DataRow("st.AppendFormat(\"{0}\", id);")]
@@ -497,7 +497,7 @@ Sinks:
         }
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("SetValue(input)", "GetValue()", true)]
         [DataRow("SetConst(input)", "GetValue()", false)]
         [DataRow("DoNothing()",     "GetValue()", false)]
@@ -692,7 +692,7 @@ Sinks:
         }
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("sql",       new[] { "SCS0002" }, new[] { "SCS0002" })]
         [DataRow("xyz",       new[] { "CS0103" },  new[] { "BC30451" })]
         [DataRow("foo()",     new[] { "CS1503" },  new[] { "BC30311" })]
@@ -1115,7 +1115,7 @@ End Namespace
         [DataRow("new string('x', 3)",        "stringConst")]
         [DataRow("new String('x', 3)",        "stringConst")]
         [DataRow("new System.String('x', 3)", "stringConst")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task VariableConcatenationMethod(string initializer, string accessor)
         {
             var cSharpTest = $@"
@@ -1256,7 +1256,7 @@ End Namespace
         [DataRow("\"\"", "stringConst")]
         [DataRow("\"\"", "MyFoo.stringConst")]
         [DataRow("\"\"", "sample.MyFoo.stringConst")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task VariableConcatenationFieldConst(string initializer, string accessor)
         {
             var cSharpTest = $@"
@@ -1311,7 +1311,7 @@ End Namespace
         [DataRow("new string('x', 3)",        "stringConst")]
         [DataRow("new String('x', 3)",        "stringConst")]
         [DataRow("new System.String('x', 3)", "stringConst")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task VariableConcatenationFieldReadonly(string initializer, string accessor)
         {
             var cSharpTest = $@"
@@ -1369,7 +1369,7 @@ End Namespace
         [DataRow("new string('x', 3)",        "stringConst")]
         [DataRow("new String('x', 3)",        "stringConst")]
         [DataRow("new System.String('x', 3)", "stringConst")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task VariableConcatenationFieldReadonlyConstructor(string initializer, string accessor)
         {
             var cSharpTest = $@"
@@ -1440,7 +1440,7 @@ End Namespace
         [DataRow("new string('x', 3)",        "stringConst")]
         [DataRow("new String('x', 3)",        "stringConst")]
         [DataRow("new System.String('x', 3)", "stringConst")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task VariableConcatenationProperty(string initializer, string accessor)
         {
             var cSharpTest = $@"
@@ -1501,7 +1501,7 @@ End Namespace
         [DataRow("\"\"", "stringConst")]
         [DataRow("\"\"", "MyFoo.stringConst")]
         [DataRow("\"\"", "sample.MyFoo.stringConst")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task VariableConcatenationPropertyConstBackingField(string initializer, string accessor)
         {
             var cSharpTest = $@"
@@ -1570,7 +1570,7 @@ End Namespace
         [DataRow("new string('x', 3)",        "stringConst")]
         [DataRow("new String('x', 3)",        "stringConst")]
         [DataRow("new System.String('x', 3)", "stringConst")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task VariableConcatenationPropertyReadonlyBackingField(string initializer, string accessor)
         {
             var cSharpTest = $@"
@@ -1637,7 +1637,7 @@ End Namespace
         [DataRow("new string('x', 3)",        "stringConst")]
         [DataRow("new String('x', 3)",        "stringConst")]
         [DataRow("new System.String('x', 3)", "stringConst")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task VariableConcatenationPropertyReadonlyConstructorBackingField(string initializer, string accessor)
         {
             var cSharpTest = $@"
@@ -1715,7 +1715,7 @@ End Namespace
         [DataRow("new string('x', 3)",        "stringConst")]
         [DataRow("new String('x', 3)",        "stringConst")]
         [DataRow("new System.String('x', 3)", "stringConst")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task VariableConcatenationPropertyGetWithInitializer(string initializer, string accessor)
         {
             var cSharpTest = $@"
@@ -1775,7 +1775,7 @@ End Namespace
         [DataRow("new string('x', 3)",        "stringConst")]
         [DataRow("new String('x', 3)",        "stringConst")]
         [DataRow("new System.String('x', 3)", "stringConst")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task VariableConcatenationPropertyGetPrivateSetWithInitializerCSharp(string initializer, string accessor)
         {
             var cSharpTest = $@"
@@ -1811,7 +1811,7 @@ namespace sample
         [DataRow("new string('x', 3)",        "stringConst")]
         [DataRow("new String('x', 3)",        "stringConst")]
         [DataRow("new System.String('x', 3)", "stringConst")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task VariableConcatenationPropertyExpressionBodyCSharp(string initializer, string accessor)
         {
             var cSharpTest = $@"
@@ -1850,7 +1850,7 @@ namespace sample
         [DataRow("new string('x', 3)",        "stringConst")]
         [DataRow("new String('x', 3)",        "stringConst")]
         [DataRow("new System.String('x', 3)", "stringConst")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task VariableConcatenationPropertyExpressionBodyGetCSharp(string initializer, string accessor)
         {
             var cSharpTest = $@"
@@ -2908,7 +2908,7 @@ End Namespace
             await VerifyVisualBasicDiagnostic(visualBasicTest, null, auditConfig).ConfigureAwait(false);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("public ",    "",         true)]
         [DataRow("private ",   "",         false)]
         [DataRow("protected ", "",         false)]
@@ -2981,7 +2981,7 @@ Sinks:
             }
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("public ",    "",        true)]
         [DataRow("private ",   "",        true)]
         [DataRow("protected ", "",        true)]
@@ -3613,7 +3613,7 @@ Sinks:
             await VerifyVisualBasicDiagnostic(visualBasicTest, Enumerable.Repeat(Expected, 3).ToArray(), optionsWithProjectConfig).ConfigureAwait(false);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("HtmlTextArea",            "m_control.Value",                  true)]
         [DataRow("HtmlInputText",           "m_control.Value",                  true)]
         [DataRow("HtmlInputHidden",         "m_control.Value",                  true)]

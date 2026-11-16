@@ -34,7 +34,7 @@ namespace SecurityCodeScan.Test.Audit
         protected override IEnumerable<MetadataReference> GetAdditionalReferences() => References;
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("Response.Cookies.Add(cookie)", "System.Web.Mvc", "System.Web", "HttpCookie", "(\"\")", "Secure",   "HttpOnly", "SCS0008", false)]
         [DataRow("Response.Cookies.Add(cookie)", "System.Web.Mvc", "System.Web", "HttpCookie", "(\"\")", "Secure",   "HttpOnly", "SCS0008", true)]
         [DataRow("Response.Cookies.Add(cookie)", "System.Web.Mvc", "System.Web", "HttpCookie", "(\"\")", "HttpOnly", "Secure",   "SCS0009", false)]

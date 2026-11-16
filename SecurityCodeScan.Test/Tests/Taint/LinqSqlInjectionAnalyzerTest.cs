@@ -32,7 +32,7 @@ namespace SecurityCodeScan.Test.Taint
         [DataRow("ctx.ExecuteQuery(typeof(Object), \"select\")", false)]
         [DataRow("ctx.ExecuteCommand(input)",                        true)]
         [DataRow("ctx.ExecuteCommand(\"select\")",                   false)]
-        [DataTestMethod]
+        [TestMethod]
         public async Task LinqInjection(string sink, bool warn)
         {
             var cSharpTest = $@"

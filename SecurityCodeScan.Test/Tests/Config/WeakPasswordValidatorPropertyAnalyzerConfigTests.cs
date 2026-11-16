@@ -26,7 +26,7 @@ namespace SecurityCodeScan.Test.Config
         protected override IEnumerable<MetadataReference> GetAdditionalReferences() => References;
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("static ", "Manager.Validator",                  "",  true)]
         [DataRow("",        "var m = new Manager(); m.Validator", "",  true)]
         [DataRow("",        "new Manager().Validator",            "",  false)]
@@ -351,7 +351,7 @@ MinimumPasswordValidatorProperties: 2
         }
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("RequireNonLetterOrDigit", 1)]
         [DataRow("RequireDigit", 1)]
         [DataRow("RequireLowercase", 1)]

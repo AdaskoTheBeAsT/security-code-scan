@@ -105,7 +105,7 @@ TaintEntryPoints:
         }
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("Deserialize",                     "")]
         [DataRow("Deserialize",                     ", null")]
         [DataRow("UnsafeDeserialize",               ", null")]
@@ -203,7 +203,7 @@ TaintEntryPoints:
         }
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("")]
         [DataRow(", null")]
         public async Task DetectSoapFormatterDeserializeMethods(string additionalParams)
@@ -254,7 +254,7 @@ TaintEntryPoints:
         }
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("string")]
         [DataRow("System.IO.Stream")]
         public async Task DetectObjectStateFormatterDeserializeMethods(string inputType)
@@ -301,7 +301,7 @@ TaintEntryPoints:
         }
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("Deserialize", "System.IO.Stream",               "")]
         [DataRow("ReadObject",  "System.IO.Stream",               "")]
         [DataRow("ReadObject",  "System.Xml.XmlDictionaryReader", "")]
@@ -352,7 +352,7 @@ TaintEntryPoints:
         }
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("System.IO.Stream",               "")]
         [DataRow("System.Xml.XmlDictionaryReader", "")]
         [DataRow("System.Xml.XmlDictionaryReader", ", false")]
@@ -447,7 +447,7 @@ TaintEntryPoints:
         }
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("System.IO.Stream",               "")]
         [DataRow("System.Xml.XmlDictionaryReader", "")]
         [DataRow("System.Xml.XmlDictionaryReader", ", false")]
@@ -588,7 +588,7 @@ TaintEntryPoints:
         }
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("System.IO.Stream",     "")]
         [DataRow("System.IO.TextReader", "")]
         [DataRow("System.Xml.XmlReader", "")]
@@ -729,7 +729,7 @@ TaintEntryPoints:
         }
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("System.IO.Stream")]
         [DataRow("string")]
         [DataRow("System.IO.TextReader")]
@@ -863,7 +863,7 @@ TaintEntryPoints:
         }
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("DeserializeFromString", "string",               "System.Type")]
         [DataRow("DeserializeFromReader", "System.IO.TextReader", "System.Type")]
         [DataRow("DeserializeFromStream", "System.Type",          "System.IO.Stream")]
@@ -909,7 +909,7 @@ TaintEntryPoints:
         }
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("DeserializeFromString", "string")]
         [DataRow("DeserializeFromReader", "System.IO.TextReader")]
         [DataRow("DeserializeFromStream", "System.IO.Stream")]
@@ -958,7 +958,7 @@ TaintEntryPoints:
         }
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("DeserializeFromString", "string",               "System.Type")]
         [DataRow("DeserializeFromReader", "System.IO.TextReader", "System.Type")]
         [DataRow("DeserializeFromStream", "System.Type",          "System.IO.Stream")]
@@ -1004,7 +1004,7 @@ TaintEntryPoints:
         }
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("DeserializeFromString", "string")]
         [DataRow("DeserializeFromReader", "System.IO.TextReader")]
         [DataRow("DeserializeFromStream", "System.IO.Stream")]
@@ -1053,7 +1053,7 @@ TaintEntryPoints:
         }
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("DeserializeFromString", "string")]
         [DataRow("DeserializeFromStream", "System.IO.Stream")]
         public async Task DetectServiceStackCsvSerializerDeserializeMethods(string method, string inputType)
@@ -1100,7 +1100,7 @@ TaintEntryPoints:
         }
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("DeserializeFromString", "string")]
         [DataRow("DeserializeFromReader", "System.IO.TextReader")]
         [DataRow("DeserializeFromStream", "System.IO.Stream")]
@@ -1149,7 +1149,7 @@ TaintEntryPoints:
         }
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("DeserializeFromString", "string",               "System.Type")]
         [DataRow("DeserializeFromStream", "System.Type",          "System.IO.Stream")]
         public async Task DetectServiceStackXmlSerializerDeserializeMethods(string method, string firstParam, string secondParam)
@@ -1194,7 +1194,7 @@ TaintEntryPoints:
         }
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("DeserializeFromString", "string")]
         [DataRow("DeserializeFromReader", "System.IO.TextReader")]
         [DataRow("DeserializeFromStream", "System.IO.Stream")]
@@ -1243,7 +1243,7 @@ TaintEntryPoints:
         }
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("System.IO.Stream")]
         [DataRow("string")]
         public async Task DetectResourceReaderCreations(string inputType)

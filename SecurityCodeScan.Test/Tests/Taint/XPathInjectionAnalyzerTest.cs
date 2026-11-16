@@ -83,7 +83,7 @@ namespace SecurityCodeScan.Test.Taint
         [DataRow("System.Xml.XPath.Extensions.XPathEvaluate(element, \"constant\")",             false)]
         [DataRow("System.Xml.XPath.Extensions.XPathEvaluate(element, input, null)",              true)]
         [DataRow("System.Xml.XPath.Extensions.XPathEvaluate(element, \"constant\", null)",       false)]
-        [DataTestMethod]
+        [TestMethod]
         public async Task XPathInjection(string sink, bool warn)
         {
             var cSharpTest = $@"

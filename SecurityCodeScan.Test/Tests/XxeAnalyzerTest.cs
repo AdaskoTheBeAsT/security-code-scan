@@ -154,7 +154,7 @@ End Class
         }
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("System.Xml.XPath",                     "XPathDocument")]
         [DataRow("Doc = System.Xml.XPath.XPathDocument", "Doc")]
         public async Task XPathDocument(string alias, string name)
@@ -211,7 +211,7 @@ End Class
         [TestCategory("Detect")]
         [DataRow("new StringReader(path)", Warnings.OnFramework)]
         [DataRow("XmlReader.Create (path, new XmlReaderSettings (){DtdProcessing = DtdProcessing.Parse})", Warnings.OnFramework)]
-        [DataTestMethod]
+        [TestMethod]
         public async Task XmlSchemaRead(string createReader, Warnings expectWarnings)
         {
             string vbCreateReader = createReader.CSharpReplaceToVBasic();
@@ -290,7 +290,7 @@ End Class
         [DataRow("DerivedXmlDocument", "Load(text)",      Warnings.None)] // safe design is assumed
         [DataRow("DerivedXmlDocument", "LoadXml(text)",   Warnings.None)] // safe design is assumed
         [DataRow("XmlDocument",        "InnerXml = text", Warnings.OnFramework)]
-        [DataTestMethod]
+        [TestMethod]
         public async Task XmlDocumentDefaultsClassMember(string className, string sink, Warnings expectWarnings)
         {
             var cSharpTest3 = $@"
@@ -360,7 +360,7 @@ End Class
         [DataRow("XmlDocument",         ".InnerXml = text", Warnings.OnFramework)]
         [DataRow("XmlFileInfoDocument", ".Load(text)",      Warnings.OnFramework)]
         [DataRow("XmlTransformableDocument", ".Load(text)", Warnings.OnFramework)]
-        [DataTestMethod]
+        [TestMethod]
         public async Task XmlDocumentDefaults(string className, string sink, Warnings expectWarnings)
         {
             var cSharpTest = $@"
@@ -479,7 +479,7 @@ End Class
         [DataRow("XmlFileInfoDocument",      "()", "XmlResolver", "null",                 "Load(text)", Warnings.None)]
         [DataRow("XmlFileInfoDocument",      "()", "XmlResolver", SecureResolverText,     "Load(text)", Warnings.None)]
         [DataRow("XmlFileInfoDocument",      "()", "XmlResolver", "new XmlUrlResolver()", "Load(text)", Warnings.Always)]
-        [DataTestMethod]
+        [TestMethod]
         public async Task XmlDocumentBased(string className, string constructorParams, string property, string value, string sink, Warnings expectWarnings)
         {
             var vbValue = value.CSharpReplaceToVBasic();
@@ -787,7 +787,7 @@ End Class
         [DataRow("DtdProcessing", "0")]
         [DataRow("DtdProcessing", "DtdProcessing.Ignore")]
         [DataRow("DtdProcessing", "(DtdProcessing)1")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task XmlTextReaderStringSafeSettings(string property, string value)
         {
             var vbValue = value.CSharpReplaceToVBasic();
@@ -993,7 +993,7 @@ End Class
         [DataRow("DtdProcessing", "0")]
         [DataRow("DtdProcessing", "DtdProcessing.Ignore")]
         [DataRow("DtdProcessing", "(DtdProcessing)1")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task XmlReaderCreateDtdProcessingDisabled(string property, string value)
         {
             var vbValue = value.CSharpReplaceToVBasic();
@@ -1151,7 +1151,7 @@ End Class
         [DataRow("ProhibitDtd   = false")]
         [DataRow("DtdProcessing = DtdProcessing.Parse")]
         [DataRow("DtdProcessing = (DtdProcessing)2")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task XmlReaderCreateDtdProcessingEnabled(string dtdProcessing)
         {
             var vbDtdProcessing = dtdProcessing.CSharpReplaceToVBasic();

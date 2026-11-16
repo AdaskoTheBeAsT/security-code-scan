@@ -72,7 +72,7 @@ public class Vulnerable
         [DataRow("System.Web", "Request.Params[0]",               "System.String", "Response.Write(userInput)")]
         [DataRow("System.Web", "Request.Params[0].ToString()",    "System.String", "Response.Write(userInput)")]
         [DataRow("System.Web", "Request.Params[0].ToCharArray()", "",              "Response.Write(userInput, 1, 1)")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task HttpResponseWrite(string @namespace, string inputType, string cast, string sink)
         {
             var csInput = string.IsNullOrEmpty(cast) ? inputType : $"({cast}){inputType}";
@@ -114,7 +114,7 @@ End Class
         }
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("System.Web.Mvc",                                 "System.Web.Mvc.Controller",               "HttpGet")]
         [DataRow("HG = System.Web.Mvc.HttpGetAttribute",           "System.Web.Mvc.Controller",               "HG")]
         [DataRow("Microsoft.AspNetCore.Mvc",                       "Microsoft.AspNetCore.Mvc.Controller",     "HttpGet")]
@@ -466,7 +466,7 @@ End Namespace
         [DataRow("WriteStyleAttribute(\"const\", stringInput)", true)]
         [DataRow("WriteStyleAttribute(stringInput, \"const\", true)", true)]
         [DataRow("WriteStyleAttribute(\"const\", stringInput, true)", true)]
-        [DataTestMethod]
+        [TestMethod]
         public async Task XssHtmlTextWriter(string sink, bool warn)
         {
             var cSharpTest = $@"
@@ -569,7 +569,7 @@ TaintEntryPoints:
         [DataRow("new Label(); temp.Text = new Page().Server.HtmlEncode(input)", false)]
         [DataRow("new Label(); var sw = new StringWriter(); var page = new Page(); page.Server.HtmlEncode(input, sw); temp.Text = sw.ToString()", false)]
 
-        [DataTestMethod]
+        [TestMethod]
         public async Task XssInWebForms(string sink, bool warn)
         {
             var cSharpTest = $@"

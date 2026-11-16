@@ -36,7 +36,7 @@ namespace SecurityCodeScan.Test.Taint
 
         [DataRow("Sink((from x in new SampleContext().TestProp  where x == \"aaa\" select x).SingleOrDefault())", true)]
         [DataRow("Sink((from x in new SampleContext().TestField where x == \"aaa\" select x).SingleOrDefault())", true)]
-        [DataTestMethod]
+        [TestMethod]
         public async Task EntityFrameworkCore(string sink, bool warn)
         {
             var cSharpTest = $@"
@@ -172,7 +172,7 @@ TaintEntryPoints:
         [TestCategory("Safe")]
         [DataRow("static ")]
         [DataRow("")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task MemberFunction(string modifier)
         {
             var cSharpTest = $@"
@@ -458,7 +458,7 @@ End Namespace
         }
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("sql",              new[] { "SCS0002" }, new[] { "SCS0002" })]
         [DataRow("MyFoo2.foo2(sql)", new[] { "SCS0002" }, new[] { "SCS0002" })]
         public async Task TransferSqlInitializerUnSafe(string right, string[] csErrors, string[] vbErrors)
@@ -581,7 +581,7 @@ End Class
         [DataRow("File.OpenRead(Path.PathSeparator.ToString())")]
         [DataRow("File.OpenRead(Path.VolumeSeparatorChar.ToString())")]
         [TestCategory("Safe")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task TransferPathSafe(string method)
         {
             var cSharpTest = $@"
@@ -703,7 +703,7 @@ End Class
             //await VerifyVisualBasicDiagnostic(visualBasicTest, null, auditConfig).ConfigureAwait(false);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("var query = String.Format(\"SELECT * FROM {0}\", input)", true)]
         [DataRow("var query = String.Format(\"SELECT * FROM {0}\", \"\")", false)]
         [DataRow("var query = String.Format(\"SELECT * FROM {0}{1}\", \"\", input)", true)]
@@ -789,7 +789,7 @@ TaintEntryPoints:
             }
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("var query = input;input = null;", "Dim query = input\r\ninput = Nothing")]
         [DataRow("string query; query = input; input = null;", "Dim query As String\r\nquery = input\r\ninput = Nothing")]
         [DataRow("string query, q = \"const\"; q = query = input; input = null;",
@@ -838,7 +838,7 @@ TaintEntryPoints:
             await VerifyVisualBasicDiagnostic(visualBasicTest, expected, optionsWithProjectConfig).ConfigureAwait(false);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("var query = o.Foo5(ref a, b, null);", true)]
         // todo: += bug in microsoft taint tracker
         //[DataRow("var query = o.Foo6(a);", true)]
@@ -1032,7 +1032,7 @@ TaintEntryPoints:
             }
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("var query = Foo(a, b);", null, null, null, null, false)]
         [DataRow("var query = Foo(a, null);", null, null, null, null, false)]
         [DataRow("var query = Foo(null, b);", null, null, null, null, false)]
@@ -1296,7 +1296,7 @@ TaintEntryPoints:
         }
 
         [TestCategory("Safe")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("String[]", "")]
         [DataRow("String[]", ", 0, 2")]
         [DataRow("Object[]", "")]
@@ -1349,7 +1349,7 @@ End Namespace
         }
 
         [TestCategory("Safe")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("string", false)]
         [DataRow("object", true)]
         public async Task TransferStringJoinSafe2(string dataType, bool isMethodGeneric)
@@ -1401,7 +1401,7 @@ End Namespace
         }
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("String[]", "")]
         [DataRow("String[]", ", 0, 2")]
         [DataRow("Object[]", "")]
@@ -1464,7 +1464,7 @@ TaintEntryPoints:
         }
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("string", false)]
         [DataRow("object", true)]
         public async Task TransferStringJoinUnsafe2(string dataType, bool isMethodGeneric)

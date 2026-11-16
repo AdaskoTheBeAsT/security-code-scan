@@ -25,7 +25,7 @@ namespace SecurityCodeScan.Test.Audit
 
         protected override IEnumerable<MetadataReference> GetAdditionalReferences() => References;
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("RequiredLength", "System.Int32", false)]
         [DataRow("RequiredLength", "System.Int32", true)]
         public async Task PasswordValidatorRequiredLength(string property, string type, bool auditMode)
@@ -99,7 +99,7 @@ PasswordValidatorRequiredProperties: [{property}]
                                               optionsWithProjectConfig).ConfigureAwait(false);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("RequireDigit",            "System.Boolean", "SCS0034", false)]
         [DataRow("RequireDigit",            "System.Boolean", "SCS0034", true)]
         [DataRow("RequireLowercase",        "System.Boolean", "SCS0034", false)]

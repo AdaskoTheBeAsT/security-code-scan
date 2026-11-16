@@ -67,7 +67,7 @@ End Class
         }
 
         [TestCategory("Detect")]
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("System.Web.Mvc",                           "Nope = System.Web.Mvc.AuthorizeAttribute", "Authorize", "OutputCache")]
         [DataRow("OC = System.Web.Mvc.OutputCacheAttribute", "Auth = System.Web.Mvc.AuthorizeAttribute", "Auth",      "OC")]
         public async Task DetectAnnotation2(string alias1, string alias2, string authorizeAttribute, string outputCacheAttribute)

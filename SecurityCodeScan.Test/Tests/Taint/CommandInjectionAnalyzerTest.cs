@@ -105,7 +105,7 @@ End Namespace
             await VerifyVisualBasicDiagnostic(visualBasicTest).ConfigureAwait(false);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow("\"windir\"",  false)]
         [DataRow("input",       true)]
         public async Task CommandInjectionFalsePositive_GetEnvironment(string payload, bool warn)

@@ -30,7 +30,7 @@ namespace SecurityCodeScan.Test
         [DataRow("CM.ECB",         "SCS0013")]
         [DataRow("CM.OFB",         "SCS0013")]
         [DataRow("CM.CBC",         "SCS0013")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task WeakCipherMode(string name, string id)
         {
             var cSharpTest = $@"

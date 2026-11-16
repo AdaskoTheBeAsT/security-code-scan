@@ -56,7 +56,7 @@ namespace SecurityCodeScan.Test.Taint
         [DataRow("new DirectoryEntry(\"constant\", \"username\", \"password\", AuthenticationTypes.None)")]
         [DataRow("new DirectoryEntry(); temp.Path = input", "SCS0026")]
         [DataRow("new DirectoryEntry(); temp.Path = \"constant\"")]
-        [DataTestMethod]
+        [TestMethod]
         public async Task LdapInjection(string sink, string warningId = null, int count = 1)
         {
             var cSharpTest = $@"
